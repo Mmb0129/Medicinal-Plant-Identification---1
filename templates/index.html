@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Medicinal Plant Identification Software</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <style>
+        /* Your CSS styles here */
+        body {
+            background-size: cover;
+        }
+
+        .back {
+            /* Replace the background image URL with your network image URL */
+            background-image: url('https://www.wallpapertip.com/wmimgs/153-1531496_wallpaper.jpg');
+            /* Adjust additional background properties as needed */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh; /* Adjust as needed */
+        }
+
+        h1{
+            color:rgb(2, 2, 24);
+            margin-top: 50px;
+        }
+
+        .one{
+
+            width: 500px;
+            margin-top: 50px;
+            margin-left: 900px;
+        }
+        .img-preview {
+            width: 256px;
+            height: 256px;
+            position: relative;
+            border: 5px solid #2c1f1f;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .img-preview>div {
+            width: 100%;
+            height: 100%;
+            background-size: 256px 256px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .upload-label {
+            display: inline-block;
+            padding: 12px 30px;
+            font-weight: 1000;
+            color: #e9e9ee;
+            font-size: 1em;
+            transition: all .4s;
+            cursor: pointer;
+           
+        }
+
+        .upload-label:hover {
+            background: #34495E;
+            color: #e96f28;
+           
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Styling for the "Ask Ai" button */
+        #chat_bot {
+            position: relative;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 0;
+            border-radius: 60px;
+            width: 110px;
+            height: 110px;
+            text-align: center;
+            line-height: 40px;
+            background-color: #e95c6c;
+            color: #fff;
+            position: fixed;
+            left: 90%;
+            top: 50%;
+            transition: transform 0.2s;
+        }
+
+        #chat_bot:hover {
+            background-color: #34495E;
+             transform: scale(1.03);
+        }
+    </style>    
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Encender Project Expo</a>
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Help</button>
+        </div>
+    </nav>
+    <div class="back">
+        <h1 style="text-align: center; margin-top: 20px;">Medicinal Plant Identification Software</h1>
+
+        <div class="one">
+            <form id="upload-file" method="post" enctype="multipart/form-data">
+                <label for="imageUpload" class="upload-label"><h4>Choose Image</h4></label>
+                <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+            </form>
+
+            <div class="image-section" style="display:none;">
+                <div class="img-preview">
+                    <div id="imagePreview"></div>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg" id="btn-predict">Click to Predict!</button>
+            </div>
+
+            <div class="loader" style="display:none;"></div>
+
+            <h3 id="result"><span> </span></h3>
+        </div>
+
+        <div class="two">
+            <!-- Modified button for "Ask Ai" -->
+            <form action="/chat_bot" method="GET">
+                <button type="submit" name="chat_bot" id="chat_bot">Ask Ai</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <!-- JavaScript file inclusion -->
+        <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
+    </footer>
+</body>
+</html>
